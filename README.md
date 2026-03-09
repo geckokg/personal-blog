@@ -1,15 +1,45 @@
 # Gecko Notes
 
-一个部署在 GitHub Pages 上的静态个人博客。
+一个由 Markdown 驱动的静态个人博客。
 
-## 本地内容结构
+## 你以后只需要管这几个文件夹
 
-- `index.html`：博客首页
-- `posts/`：文章页面
-- `assets/styles.css`：样式文件
-- `assets/site.js`：轻量交互
-- `.nojekyll`：告诉 GitHub Pages 直接发布静态文件
+- `content/software-hardware/`：软硬件、工具、设备、折腾记录
+- `content/contract-trading/`：合约交易、策略、复盘、风控
+- `content/project-lab/`：项目实验、工具开发、想法验证
+- `content/weekly-notes/`：周记、随笔、观察记录
 
-## 更新方式
+往这些文件夹里直接放 `.md` 文件就行。
 
-直接修改页面文件，提交并推送到 `main` 分支后，GitHub Pages 会自动重新发布站点。
+## 生成站点
+
+运行下面这条命令会自动把 Markdown 生成成首页、分类页和文章页：
+
+```powershell
+python scripts/build_blog.py
+```
+
+## Markdown 写法
+
+最简单的写法就是直接从一级标题开始：
+
+```md
+# 文章标题
+
+这里写正文。
+```
+
+脚本会自动从文件名和正文里提取标题、摘要和时间。
+
+## 站点结构
+
+- `blog_config.json`：站点标题、分区配置
+- `scripts/build_blog.py`：Markdown 生成脚本
+- `index.html`：自动生成的首页
+- `categories/`：自动生成的板块页面
+- `posts/`：自动生成的文章页面
+- `assets/`：样式和脚本
+
+## 发布方式
+
+站点仍然部署在 GitHub Pages 上。以后你把 `.md` 放进内容目录后，我帮你执行生成并推送到 GitHub 就可以了。

@@ -1,0 +1,37 @@
+{
+  "site_title": "Gecko Notes",
+  "hero_title": "把技术复盘和交易观察写成长期有效的内容系统",
+  "hero_description": "这个博客以后只维护 Markdown 内容，页面会自动生成。现在已经把软硬件、合约交易、项目实验和周记观察四个板块搭好了。",
+  "github_url": "https://github.com/geckokg",
+  "site_description": "一个由 Markdown 驱动的个人博客，专门记录软硬件、合约交易、项目实验和长期观察。",
+  "sections": [
+    {
+      "slug": "software-hardware",
+      "label": "软硬件",
+      "badge": "Software & Hardware",
+      "description": "软件工具、硬件设备、开发环境、效率工作流。",
+      "topics": ["软件工具", "硬件折腾", "开发环境", "工作流"]
+    },
+    {
+      "slug": "contract-trading",
+      "label": "合约交易",
+      "badge": "Contract Trading",
+      "description": "交易计划、策略复盘、风控规则、执行记录。",
+      "topics": ["交易计划", "策略复盘", "风控", "执行纪律"]
+    },
+    {
+      "slug": "project-lab",
+      "label": "项目实验",
+      "badge": "Project Lab",
+      "description": "正在做的项目、工具尝试、验证想法的过程。",
+      "topics": ["个人项目", "工具开发", "想法验证", "实验记录"]
+    },
+    {
+      "slug": "weekly-notes",
+      "label": "周记观察",
+      "badge": "Weekly Notes",
+      "description": "每周复盘、碎片观察、阶段总结和长期记录。",
+      "topics": ["每周复盘", "阶段总结", "碎片想法", "长期观察"]
+    }
+  ]
+}
