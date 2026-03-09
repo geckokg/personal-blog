@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gecko Notes | 个人博客</title>
+  <meta
+    name="description"
+    content="一个关于技术、产品、生活观察与长期主义写作的个人博客。"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script defer src="./assets/site.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./index.html">Gecko Notes</a>
+      <nav class="site-nav">
+        <a href="#posts">文章</a>
+        <a href="#about">关于</a>
+        <a href="https://github.com/geckokg" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" data-reveal>
+        <div class="hero-copy">
+          <p class="eyebrow">Personal Blog</p>
+          <h1>写给未来自己的公开笔记。</h1>
+          <p class="hero-text">
+            这里会记录我在技术、产品、学习和生活里的长期思考。不是热点快讯，而是那些值得反复回看的东西。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#posts">开始阅读</a>
+            <a class="button button-secondary" href="#about">认识一下我</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <p class="panel-label">现在进行时</p>
+          <ul class="panel-list">
+            <li>搭建自己的内容系统</li>
+            <li>持续写技术与效率主题</li>
+            <li>把零散经验沉淀成文章</li>
+          </ul>
+          <p class="panel-footnote">更新节奏：慢一点，但尽量持续。</p>
+        </aside>
+      </section>
+
+      <section class="section" id="posts">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">Latest Posts</p>
+          <h2>最近写了什么</h2>
+        </div>
+
+        <div class="post-grid">
+          <article class="post-card" data-reveal>
+            <p class="post-meta">March 2026 · 建站</p>
+            <h3>把博客搭起来，比等待完美更重要</h3>
+            <p>
+              为什么我决定先把博客上线，再慢慢迭代它的内容、样式和栏目。
+            </p>
+            <a class="text-link" href="./posts/start-here.html">阅读全文</a>
+          </article>
+
+          <article class="post-card" data-reveal>
+            <p class="post-meta">March 2026 · 写作</p>
+            <h3>如何把零散想法，变成值得发布的文章</h3>
+            <p>
+              从随手记录到公开输出，我给自己定了一套更容易坚持的小流程。
+            </p>
+            <a class="text-link" href="./posts/build-in-public.html">阅读全文</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about" data-reveal>
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>关于这个站</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>我想写什么</h3>
+            <p>
+              技术实践、工具使用、效率系统、个人项目，还有一些关于成长方式的观察。
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>为什么要公开写</h3>
+            <p>
+              公开表达会逼着人把问题想清楚。长期看，它也是一种积累信任和复利的方式。
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>你会看到什么</h3>
+            <p>
+              不追求高频更新，更多是有价值的长文、经验总结，以及一些可复用的方法。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section timeline-section">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">Writing Notes</p>
+          <h2>接下来准备写的内容</h2>
+        </div>
+
+        <div class="timeline" data-reveal>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>个人项目复盘</h3>
+              <p>记录从想法、执行到上线的完整过程。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>高效工作流</h3>
+              <p>把我正在用的工具链和整理方式写成教程。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>长期学习笔记</h3>
+              <p>提炼那些能在半年后依然有用的东西。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Gecko Notes. Built with static files and shipped on GitHub Pages.</p>
+    </footer>
+  </div>
+</body>
+</html>
