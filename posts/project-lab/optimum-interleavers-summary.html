@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimum Interleavers 实现结构总结 | Gecko Notes</title>
+  <meta name="description" content="论文给了 4 种实现结构：Type I, II, III, IV; 本质上是两对结构。Type I 和 Type II 是一对对偶，Type III 和 Type IV 是一对对偶。 这里“对偶”的意思是： 某个...">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="../../index.html">Gecko Notes</a>
+      <nav class="site-nav">
+        <a href="../../index.html#sections">板块</a>
+        <a href="../../index.html#latest">最新</a>
+        <a href="https://github.com/geckokg" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+    <main>
+      
+      <div class="article-page" data-reveal>
+        <a class="back-link" href="../../categories/project-lab.html">← 返回项目实验板块</a>
+        <p class="eyebrow">Project Lab</p>
+        <h1>Optimum Interleavers 实现结构总结</h1>
+        <div class="article-meta">
+          <span class="post-chip">项目实验</span>
+          <span class="count-pill">2026.03.12</span>
+        </div>
+        <p class="article-lead">论文给了 4 种实现结构：Type I, II, III, IV; 本质上是两对结构。Type I 和 Type II 是一对对偶，Type III 和 Type IV 是一对对偶。 这里“对偶”的意思是： 某个...</p>
+        <div class="tag-list"><span>个人项目</span><span>工具开发</span><span>想法验证</span><span>实验记录</span></div>
+        <div class="article-body">
+          <p>论文给了 4 种实现结构：Type I, II, III, IV; 本质上是两对结构。Type I 和 Type II 是一对对偶，Type III 和 Type IV 是一对对偶。</p>
+<p>这里“对偶”的意思是：</p>
+<p>某个 interleaver 的 unscrambler，本身又是另一个参数对调后的 interleaver，所以 Type II 可以看成 Type I 的对偶，Type IV 可以看成 Type III 的对偶。</p>
+<p>Type I 的局部输出规律可以写成： </p>
+<pre><code class="language-text">a_k, a_{k+n1}, a_{k+2n1}, ..., a_{k+n2*n1},
+a_{k+n2+1}, a_{k+n2+1+n1}, ...
+</code></pre>
+<p>对 (n2,n1)=(3,7) 就是：</p>
+<pre><code>a_k, a_{k+7}, a_{k+14}, a_{k+21},
+a_{k+4}, a_{k+11}, a_{k+18}, ...
+</code></pre>
+<p>以(3,7)为例子 就是：</p>
+<pre><code>0, 7, 14, 21,  4, 11, 18, 25, ...
+1, 8, 15, 22,  5, 12, 19, 26, ...
+2, 9, 16, 23,  6, 13, 20, 27, ...
+</code></pre>
+<p>对应 nonuniform。</p>
+<p>Type III 更适合写成：(对应 uniform)</p>
+<p><code>b_i, b_{i+(n1+1)}, b_{i+2(n1+1)}, ..., b_{i+(n2-1)(n1+1)}</code></p>
+<p>以(3,7)为例子 就是：</p>
+<pre><code>0, 8, 16
+1, 9, 17
+2, 10, 18
+3, 11, 19
+...
+</code></pre>
+<p>Type I：一组有 n2+1 个元素，组内步长 n1</p>
+<p>Type III：一组有 n2 个元素，组内步长 n1+1</p>
+<p>Type I 延迟：</p>
+<pre><code>D1 = n2 (n1 - 1) 
+</code></pre>
+<p>Type II 延迟：</p>
+<pre><code>D2 = n1 (n2 - 1) 
+</code></pre>
+<p>Type III 延迟：</p>
+<pre><code>D3 = (n2 - 1)(n1 + 1) 
+</code></pre>
+<p>Type IV 延迟：</p>
+<pre><code>D4 = (n1 - 1)(n2 + 1)
+</code></pre>
+<p>Type I：要求 gcd(n1, n2+1)=1</p>
+<p>Type II：要求 gcd(n2, n1+1)=1</p>
+<p>Type III：要求 gcd(n1, n2)=1</p>
+<p>Type IV：要求 gcd(n1, n2)=1</p>
+<p>直接用的东西：</p>
+<pre><code>- 若 n2 &lt; n1 &lt; 2n2， 选 Type I
+- 若 n1 &gt;= 2n2，     选 Type III
+- 若 n1 &lt; n2 &lt; 2n1， 选 Type II
+- 若 n2 &gt;= 2n1，     选 Type IV
+</code></pre>
+<p>进一步讨论：在保持最小延迟的同时，怎样把存储量也降到最优?</p>
+<p>就是把未来用不到符号不存储，然后进行压缩</p>
+<p>原始 19 级结构一开始是：</p>
+<pre><code>[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18] 
+</code></pre>
+<p>压缩后的 10 级结构一开始是：</p>
+<pre><code>[0 4 7 8 11 12 14 15 16 18]
+</code></pre>
+        </div>
+      </div>
+    
+    </main>
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Gecko Notes. Content-first, generated from Markdown.</p>
+    </footer>
+  </div>
+</body>
+</html>
